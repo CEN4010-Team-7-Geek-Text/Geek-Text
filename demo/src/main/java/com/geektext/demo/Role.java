@@ -12,9 +12,6 @@ import java.util.*;
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-     private Set<User> users;
-
     public Integer getId() {
         return id;
     }
@@ -31,11 +28,5 @@ import java.util.*;
         this.name = name;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 
-    public Set<User> getUsers() {
-        return users;
-    }
 }

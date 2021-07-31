@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Geek Text Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="#" th:action="@{/profile}" th:object="${user}" method="post">
+
+    <p><label for="password">Password: </label></p>
+    <input type="password" th:field="*{password}" name="password" id="password" size="35" placeholder="Enter password" /></p>
+
+    <p><label for="fname">First Name: </label></p>
+    <p><input type="text" th:field="*{fname}" name="fname" id="fname" size="35" placeholder="Enter first name" /></p>
+
+    <p><label for="lname">Last Name: </label></p>
+    <p><input type="text" th:field="*{lname}" name="lname" id="lname" size="35" placeholder="Enter last name" /></p>
+
+    <p><label for="address">Address: </label></p>
+    <p><input type="text" th:field="*{address}" name="address" id="address" size="35" placeholder="Enter address" /></p>
+
+    <p><label for="phone">Phone: </label></p>
+    <p><input type="text" th:field="*{phone}" name="phone" id="phone" size="35" placeholder="(No dashes or special characters)" /></p>
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+
+</form>
+</body>
+</html>

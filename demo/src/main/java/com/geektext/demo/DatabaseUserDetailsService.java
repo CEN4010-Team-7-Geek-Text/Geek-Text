@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class DatabaseUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
 
     private UserDetailsMapper userDetailsMapper;
 
-    public void DatabaseUserDetailsService(UserRepository userRepository,
+    public DatabaseUserDetailsService(UserRepository userRepository,
                                       UserDetailsMapper userDetailsMapper) {
         this.userRepository = userRepository;
         this.userDetailsMapper = userDetailsMapper;
@@ -23,7 +22,12 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        com.geektext.demo.User user = userRepository.findByEmail(username);
+        User user = userRepository.findByEmail(username);
+        if (user == null)
+        {
+            throw new UsernameNotFoundException("User not found");
+        }
+
         return userDetailsMapper.toUserDetails(user);
     }
 }

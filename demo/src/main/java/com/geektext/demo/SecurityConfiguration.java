@@ -27,18 +27,18 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
                 .authorizeRequests()
-                    .antMatchers("/profile", "/shoppingcart").authenticated()
-                    .anyRequest().permitAll()
-                    .and()
+                .antMatchers("/register").permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
-                .logout()
-                    .permitAll();
+                .usernameParameter("email")
+                .defaultSuccessUrl("/users")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/").permitAll();
     }
 
     @Bean
